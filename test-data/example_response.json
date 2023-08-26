@@ -1,0 +1,650 @@
+{
+    "status": {
+      "code": "SUCCESS",
+      "description": "Ok"
+    },
+    "input": {
+      "id": "82804a49307d40039888546642a3a66e",
+      "data": {
+        "image": {
+          "url": "https://samples.clarifai.com/metro-north.jpg"
+        }
+      }
+    },
+    "outputs": [
+      {
+        "id": "74d9164c21af442280fc6639bfacc7fa",
+        "status": {
+          "code": "SUCCESS",
+          "description": "Ok"
+        },
+        "created_at": {
+          "seconds": 1693038631,
+          "nanos": 402529206
+        },
+        "model": {
+          "id": "color-recognition",
+          "name": "color",
+          "created_at": {
+            "seconds": 1462989945,
+            "nanos": 924367000
+          },
+          "modified_at": {
+            "seconds": 1667331915,
+            "nanos": 89623000
+          },
+          "app_id": "main",
+          "model_version": {
+            "id": "dd9458324b4b45c2be1a7ba84d27cd04",
+            "created_at": {
+              "seconds": 1468372752,
+              "nanos": 147644000
+            },
+            "status": {
+              "code": "MODEL_TRAINED",
+              "description": "Model is trained and ready"
+            },
+            "visibility": {
+              "gettable": "PUBLIC"
+            },
+            "app_id": "main",
+            "user_id": "clarifai",
+            "metadata": {}
+          },
+          "user_id": "clarifai",
+          "model_type_id": "image-color-recognizer",
+          "visibility": {
+            "gettable": "PUBLIC"
+          },
+          "workflow_recommended": {}
+        },
+        "data": {
+          "colors": [
+            {
+              "raw_hex": "#513f2c",
+              "w3c": {
+                "hex": "#696969",
+                "name": "DimGray"
+              },
+              "value": 0.14725
+            },
+            {
+              "raw_hex": "#7298e2",
+              "w3c": {
+                "hex": "#6495ed",
+                "name": "CornflowerBlue"
+              },
+              "value": 0.31575
+            },
+            {
+              "raw_hex": "#1e181b",
+              "w3c": {
+                "hex": "#000000",
+                "name": "Black"
+              },
+              "value": 0.20175
+            },
+            {
+              "raw_hex": "#8f714b",
+              "w3c": {
+                "hex": "#d2b48c",
+                "name": "Tan"
+              },
+              "value": 0.1125
+            },
+            {
+              "raw_hex": "#d2c275",
+              "w3c": {
+                "hex": "#bdb76b",
+                "name": "DarkKhaki"
+              },
+              "value": 0.017
+            },
+            {
+              "raw_hex": "#141b3c",
+              "w3c": {
+                "hex": "#000000",
+                "name": "Black"
+              },
+              "value": 0.12
+            },
+            {
+              "raw_hex": "#404b84",
+              "w3c": {
+                "hex": "#483d8b",
+                "name": "DarkSlateBlue"
+              },
+              "value": 0.0705
+            },
+            {
+              "raw_hex": "#e5e1cc",
+              "w3c": {
+                "hex": "#faebd7",
+                "name": "AntiqueWhite"
+              },
+              "value": 0.01525
+            }
+          ]
+        }
+      },
+      {
+        "id": "3111ec9991864ed79890d33b080d4f33",
+        "status": {
+          "code": "SUCCESS",
+          "description": "Ok"
+        },
+        "created_at": {
+          "seconds": 1693038631,
+          "nanos": 402542049
+        },
+        "model": {
+          "id": "apparel-detection",
+          "name": "apparel",
+          "created_at": {
+            "seconds": 1574095371,
+            "nanos": 109295000
+          },
+          "modified_at": {
+            "seconds": 1678806845,
+            "nanos": 852885000
+          },
+          "app_id": "main",
+          "model_version": {
+            "id": "1ed35c3d176f45d69d2aa7971e6ab9fe",
+            "created_at": {
+              "seconds": 1574095371,
+              "nanos": 233234000
+            },
+            "status": {
+              "code": "MODEL_TRAINED",
+              "description": "Model is trained and ready"
+            },
+            "visibility": {
+              "gettable": "PUBLIC"
+            },
+            "app_id": "main",
+            "user_id": "clarifai",
+            "metadata": {}
+          },
+          "user_id": "clarifai",
+          "model_type_id": "visual-detector",
+          "visibility": {
+            "gettable": "PUBLIC"
+          },
+          "workflow_recommended": {}
+        },
+        "data": {
+          "regions": [
+            {
+              "id": "7d83650980d85674c5c9110304b15a3f",
+              "region_info": {
+                "bounding_box": {
+                  "top_row": 0.415487677,
+                  "left_col": 0.883898675,
+                  "bottom_row": 0.43785122,
+                  "right_col": 0.906564534
+                }
+              },
+              "data": {
+                "concepts": [
+                  {
+                    "id": "ai_ckdxd4DP",
+                    "name": "bracelet",
+                    "value": 0.871981084,
+                    "app_id": "main"
+                  }
+                ],
+                "value": 0.871981084
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "f67d61940bf442daa20c0a6c5649b106",
+        "status": {
+          "code": "SUCCESS",
+          "description": "Ok"
+        },
+        "created_at": {
+          "seconds": 1693038631,
+          "nanos": 402553472
+        },
+        "model": {
+          "id": "workflow-model-7557-83ba97694156",
+          "name": "workflow-model-7557-83ba97694156",
+          "created_at": {
+            "seconds": 1692985591,
+            "nanos": 43174000
+          },
+          "modified_at": {
+            "seconds": 1692985591,
+            "nanos": 43174000
+          },
+          "app_id": "ReFashion001",
+          "model_version": {
+            "id": "aecd5891c3484542a53d201069cc0553",
+            "created_at": {
+              "seconds": 1692985591,
+              "nanos": 233396000
+            },
+            "status": {
+              "code": "MODEL_TRAINED",
+              "description": "Model is trained and ready"
+            },
+            "visibility": {
+              "gettable": "PUBLIC"
+            },
+            "app_id": "ReFashion001",
+            "user_id": "pizzahunter2000",
+            "metadata": {}
+          },
+          "user_id": "pizzahunter2000",
+          "model_type_id": "image-crop",
+          "visibility": {
+            "gettable": "PUBLIC"
+          },
+          "workflow_recommended": {}
+        },
+        "data": {
+          "regions": [
+            {
+              "id": "7d83650980d85674c5c9110304b15a3f",
+              "region_info": {
+                "bounding_box": {
+                  "top_row": 0.415487677,
+                  "left_col": 0.883898675,
+                  "bottom_row": 0.43785122,
+                  "right_col": 0.906564534
+                }
+              },
+              "data": {
+                "image": {
+                  "base64": "\\377\\330\\377\\340\\000\\020JFIF\\000\\001\\001\\000\\000\\001\\000\\001\\000\\000\\377\\333\\000C\\000\\010\\006\\006\\007\\006\\005\\010\\007\\007\\007\\t\\t\\010\\n\\014\\024\\r\\014\\013\\013\\014\\031\\022\\023\\017\\024\\035\\032\\037\\036\\035\\032\\034\\034 $.' \",#\\034\\034(7),01444\\037'9=82<.342\\377\\333\\000C\\001\\t\\t\\t\\014\\013\\014\\030\\r\\r\\0302!\\034!22222222222222222222222222222222222222222222222222\\377\\300\\000\\021\\010\\000\\010\\000\\013\\003\\001\\\"\\000\\002\\021\\001\\003\\021\\001\\377\\304\\000\\037\\000\\000\\001\\005\\001\\001\\001\\001\\001\\001\\000\\000\\000\\000\\000\\000\\001\\002\\003\\004\\005\\006\\007\\010\\t\\n\\013\\377\\304\\000\\265\\020\\000\\002\\001\\003\\003\\002\\004\\003\\005\\005\\004\\004\\000\\000\\001}\\001\\002\\003\\000\\004\\021\\005\\022!1A\\006\\023Qa\\007\\\"q\\0242\\201\\221\\241\\010#B\\261\\301\\025R\\321\\360$3br\\202\\t\\n\\026\\027\\030\\031\\032%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\\203\\204\\205\\206\\207\\210\\211\\212\\222\\223\\224\\225\\226\\227\\230\\231\\232\\242\\243\\244\\245\\246\\247\\250\\251\\252\\262\\263\\264\\265\\266\\267\\270\\271\\272\\302\\303\\304\\305\\306\\307\\310\\311\\312\\322\\323\\324\\325\\326\\327\\330\\331\\332\\341\\342\\343\\344\\345\\346\\347\\350\\351\\352\\361\\362\\363\\364\\365\\366\\367\\370\\371\\372\\377\\304\\000\\037\\001\\000\\003\\001\\001\\001\\001\\001\\001\\001\\001\\000\\000\\000\\000\\000\\000\\001\\002\\003\\004\\005\\006\\007\\010\\t\\n\\013\\377\\304\\000\\265\\021\\000\\002\\001\\002\\004\\004\\003\\004\\007\\005\\004\\004\\000\\001\\002w\\000\\001\\002\\003\\021\\004\\005!1\\006\\022AQ\\007aq\\023\"2\\201\\010\\024B\\221\\241\\261\\301\\t#3R\\360\\025br\\321\\n\\026$4\\341%\\361\\027\\030\\031\\032&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\\202\\203\\204\\205\\206\\207\\210\\211\\212\\222\\223\\224\\225\\226\\227\\230\\231\\232\\242\\243\\244\\245\\246\\247\\250\\251\\252\\262\\263\\264\\265\\266\\267\\270\\271\\272\\302\\303\\304\\305\\306\\307\\310\\311\\312\\322\\323\\324\\325\\326\\327\\330\\331\\332\\342\\343\\344\\345\\346\\347\\350\\351\\352\\362\\363\\364\\365\\366\\367\\370\\371\\372\\377\\332\\000\\014\\003\\001\\000\\002\\021\\003\\021\\000?\\000\\322\\360\\020\\326\\357>\\033,ze\\325\\235\\275\\266\\351R?6&y>\\371\\311\\310`\\007=+\\304\\374Ao<Z\\365\\334w!$\\231_\\016\\343?1\\300\\346\\212+\\311\\303;V\\232:\\345\\360\\237\\377\\331",
+                  "image_info": {
+                    "width": 11,
+                    "height": 8,
+                    "format": "JPEG",
+                    "color_mode": "UnknownColorMode"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "2ad0b894afeb44589db2c083bc514a9b",
+        "status": {
+          "code": "SUCCESS",
+          "description": "Ok"
+        },
+        "created_at": {
+          "seconds": 1693038631,
+          "nanos": 402562701
+        },
+        "model": {
+          "id": "apparel-classification-v2",
+          "name": "apparel",
+          "created_at": {
+            "seconds": 1619463443,
+            "nanos": 994869000
+          },
+          "modified_at": {
+            "seconds": 1677801263,
+            "nanos": 376391000
+          },
+          "app_id": "main",
+          "model_version": {
+            "id": "651c5412d53c408fa3b4fe3dcc060be7",
+            "created_at": {
+              "seconds": 1619463444,
+              "nanos": 863420000
+            },
+            "status": {
+              "code": "MODEL_TRAINED",
+              "description": "Model is trained and ready"
+            },
+            "visibility": {
+              "gettable": "PUBLIC"
+            },
+            "app_id": "main",
+            "user_id": "clarifai",
+            "metadata": {}
+          },
+          "user_id": "clarifai",
+          "model_type_id": "visual-classifier",
+          "visibility": {
+            "gettable": "PUBLIC"
+          },
+          "workflow_recommended": {}
+        },
+        "data": {
+          "regions": [
+            {
+              "id": "7d83650980d85674c5c9110304b15a3f",
+              "region_info": {
+                "bounding_box": {
+                  "top_row": 0.415487677,
+                  "left_col": 0.883898675,
+                  "bottom_row": 0.43785122,
+                  "right_col": 0.906564534
+                }
+              },
+              "data": {
+                "concepts": [
+                  {
+                    "id": "ai_pMhwswVd",
+                    "name": "bracelet",
+                    "value": 0.949467778,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_v5VXsMd0",
+                    "name": "watch",
+                    "value": 0.85282439,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_ZcXdcLSr",
+                    "name": "ring",
+                    "value": 0.80024004,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_wr0RRFsz",
+                    "name": "leather",
+                    "value": 0.581922412,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_njWnfGDS",
+                    "name": "belt",
+                    "value": 0.37675947,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_5WdcZLFb",
+                    "name": "dangle earrings",
+                    "value": 0.359178603,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_CKkStzNR",
+                    "name": "sunglasses",
+                    "value": 0.353195,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_txZ7bp5c",
+                    "name": "pumps",
+                    "value": 0.33004564,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_8s679b4Z",
+                    "name": "shoes",
+                    "value": 0.285533,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_spdhbxcs",
+                    "name": "necklace",
+                    "value": 0.251830965,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_G0dBV46z",
+                    "name": "stud earrings",
+                    "value": 0.249074608,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_SwHTDbfx",
+                    "name": "midi dress",
+                    "value": 0.192619577,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_TkkrhZl1",
+                    "name": "socks",
+                    "value": 0.191444114,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_nPm2pndl",
+                    "name": "long-sleeve",
+                    "value": 0.172888875,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_zXgMs4Lf",
+                    "name": "colorblock",
+                    "value": 0.171550587,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_gh5dKpSW",
+                    "name": "pants",
+                    "value": 0.15936327,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_49LhcN8W",
+                    "name": "mini dress",
+                    "value": 0.146144822,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_0LhjCzXX",
+                    "name": "top",
+                    "value": 0.137699574,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_wqxmwHRJ",
+                    "name": "shirt",
+                    "value": 0.107494332,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_7GQJmXJR",
+                    "name": "wrislet and clutch",
+                    "value": 0.107130408,
+                    "app_id": "main"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "92c372f6a8014c2a969c39b89aff3e60",
+        "status": {
+          "code": "SUCCESS",
+          "description": "Ok"
+        },
+        "created_at": {
+          "seconds": 1693038631,
+          "nanos": 402570315
+        },
+        "model": {
+          "id": "logos-yolov5",
+          "name": "Logo Detection v2",
+          "created_at": {
+            "seconds": 1651181108,
+            "nanos": 324868000
+          },
+          "modified_at": {
+            "seconds": 1680275678,
+            "nanos": 314767000
+          },
+          "app_id": "main",
+          "model_version": {
+            "id": "d4e85f4d37d24fdd9a1f04cca91a3510",
+            "created_at": {
+              "seconds": 1680275678,
+              "nanos": 332600000
+            },
+            "status": {
+              "code": "MODEL_TRAINED",
+              "description": "Model is trained and ready"
+            },
+            "visibility": {
+              "gettable": "PUBLIC"
+            },
+            "app_id": "main",
+            "user_id": "clarifai",
+            "metadata": {}
+          },
+          "user_id": "clarifai",
+          "model_type_id": "visual-detector",
+          "visibility": {
+            "gettable": "PUBLIC"
+          },
+          "workflow_recommended": {}
+        },
+        "data": {
+          "regions": [
+            {
+              "id": "7d83650980d85674c5c9110304b15a3f",
+              "region_info": {
+                "bounding_box": {
+                  "top_row": 0.415487677,
+                  "left_col": 0.883898675,
+                  "bottom_row": 0.43785122,
+                  "right_col": 0.906564534
+                }
+              },
+              "data": {
+                "concepts": [
+                  {
+                    "id": "ai_L2vKP0w0",
+                    "name": "nike",
+                    "value": 0.9505113,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_5lSMBvbb",
+                    "name": "adidas",
+                    "value": 0.9414691,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_MfCqG65q",
+                    "name": "puma",
+                    "value": 0.9085422,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_z5mNBBfF",
+                    "name": "gucci",
+                    "value": 0.89921933,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_PzHZBdrS",
+                    "name": "nasa",
+                    "value": 0.8865002,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_8rhnVLvZ",
+                    "name": "reebok",
+                    "value": 0.8817893,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_hbqRB1Xr",
+                    "name": "mcdonalds",
+                    "value": 0.8771933,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_0GBgN2cD",
+                    "name": "coca-cola",
+                    "value": 0.87269175,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_DcPv2jlN",
+                    "name": "apple",
+                    "value": 0.8706931,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_PvTZT6Z8",
+                    "name": "bmw",
+                    "value": 0.86594856,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_2qqh1L6C",
+                    "name": "starbucks",
+                    "value": 0.8647746,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_mfFTSN1L",
+                    "name": "sony",
+                    "value": 0.8604013,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_qGrTN2PD",
+                    "name": "pepsi",
+                    "value": 0.85446894,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_sx7BD5SX",
+                    "name": "mercedes",
+                    "value": 0.8528398,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_fVbRVlpC",
+                    "name": "louis vuitton",
+                    "value": 0.85097057,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_kVRf4l7T",
+                    "name": "chanel",
+                    "value": 0.8494095,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_KL8zCvGc",
+                    "name": "taco bell",
+                    "value": 0.8415543,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_0z0bZxsz",
+                    "name": "huawei",
+                    "value": 0.8358363,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_xnpX9cF9",
+                    "name": "microsoft",
+                    "value": 0.83213323,
+                    "app_id": "main"
+                  },
+                  {
+                    "id": "ai_T0P7VK8S",
+                    "name": "nintendo",
+                    "value": 0.8305354,
+                    "app_id": "main"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  
