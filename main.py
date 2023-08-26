@@ -1,13 +1,16 @@
-import json
+import os
 import streamlit as st
 import pandas as pd
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 USER_ID = 'pizzahunter2000'
 # Your PAT (Personal Access Token) can be found in the portal under Authentification
-PAT = '18b597103b19450587f621929c41a137'
+PAT = os.getenv("CLARIFAI_TOKEN")
 APP_ID = 'ReFashion001'
 # Change these to make your own predictions
 WORKFLOW_ID = 'workflow-c4a9f1'
@@ -39,7 +42,6 @@ def doTheThing(file):
         print(post_workflow_results_response.status)
         raise Exception("Post workflow results failed, status: " + post_workflow_results_response.status.description)
 
-    # We'll get one WorkflowResult for each input we used above. Because of one input, we have here one WorkflowResult
     results = post_workflow_results_response.results[0]
     return results
 
