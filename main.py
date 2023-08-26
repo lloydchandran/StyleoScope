@@ -163,7 +163,7 @@ if uploaded_file is not None:
     } for concept in allBrands.values()]))
 
     # Create and run prompt
-    sys, prompt = createPrompt(colors, allConcepts, allBrands)
+    sys, prompt = createPrompt(colors, allConcepts.values(), allBrands.values())
     st.write("## Prompt")
     st.write(prompt)
 

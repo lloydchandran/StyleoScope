@@ -48,18 +48,23 @@ def runPrompt(sys, prompt):
 # Returns a (sys, prompt) tuple with details from the given input
 # Meant to be used with runPrompt
 def createPrompt(colors, concepts, brands):
-    sys = """You are a..."""
-    prompt = """You are a..."""
+    sys = """You are an assistant for a clothing website.
+Write a description for a clothing item I want to sell"""
+    prompt = """Upon inspection, I was able to determine the following details about the item:
+
+"""
 
     colors_str = "No specific colors were detected."
     if len(colors) > 0:
-        colors_str = "The colors of this item are " + ", ".join([color.w3c.name for color in colors]) + "."
+        colors_str = "The colors of this item are " + ", ".join([color.name for color in colors]) + "."
     concepts_str = "This is an article of clothing."
     if len(concepts) > 0:
         concepts_str = "This item is described as " + ", ".join([concept.name for concept in concepts]) + "."
     brands_str = "No brands were detected."
     if len(brands) > 0:
         brands_str = "Brand markings on this item include " + ", ".join([brand.name for brand in brands]) + "."
+
+    prompt += "\n".join([colors_str, concepts_str, brands_str])
     
     # 200iq sanitization
     sys = sys.replace("[INST]", "").replace("[/INST]", "").replace("<<SYS>>", "").replace("<</SYS>>", "")
