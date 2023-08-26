@@ -57,6 +57,18 @@ def getColors(results):
                 colorResults.append(ColorResult(color.raw_hex, color.w3c, color.value))
     return colorResults
 
+
+def getRegionsWithConceptsLogo(results):
+    regionResults = []
+    for output in results.outputs:
+        if output.model.id == "logos-yolov5":
+            for regions in output.data.regions:
+                regionResult = RegionResult(regions.id, regions.region_info.bounding_box)
+                for concept in regions.data.concepts:
+                    regionResult.addConcept(Concept(concept.id, concept.name, concept.value))
+                regionResults.append(regionResult)
+    return regionResults
+
 def getRegionsWithConcepts(results):
     regionResults = []
     for output in results.outputs:
@@ -93,6 +105,20 @@ if uploaded_file is not None:
             'id': concept.id,
             'confidence': f'{concept.confidence * 100:.2f}%'
         } for concept in region.concepts]))
+
+    brands = getRegionsWithConceptsLogo(results)
+    st.write("## Brands")
+    for region in brands:
+        st.write(f"### {region.id}")
+        
+        st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
+
+        st.write(pd.DataFrame.from_records([{
+            'name': concept.name,
+            'id': concept.id,
+            'confidence': f'{concept.confidence * 100:.2f}%'
+        } for concept in region.concepts]))
+    
 
     # st.write("## Output")
     # st.write(results)
