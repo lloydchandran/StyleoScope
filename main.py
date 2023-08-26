@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from PIL import Image
 
 from custom_types import ColorResult, Concept, RegionResult
+from llama_runner import createPrompt, runPrompt
 
 load_dotenv()
 
@@ -94,31 +95,79 @@ if uploaded_file is not None:
     } for color in colors]))
 
     regions = getRegionsWithConcepts(results)
-    st.write("## Regions")
-    for region in regions:
-        st.write(f"### {region.id}")
-        
-        st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
+    with st.expander("Concept details"):
+        st.write("## Regions")
+        for region in regions:
+            st.write(f"### {region.id}")
+            
+            st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
 
-        st.write(pd.DataFrame.from_records([{
-            'name': concept.name,
-            'id': concept.id,
-            'confidence': f'{concept.confidence * 100:.2f}%'
-        } for concept in region.concepts]))
+            st.write(pd.DataFrame.from_records([{
+                'name': concept.name,
+                'id': concept.id,
+                'confidence': f'{concept.confidence * 100:.2f}%'
+            } for concept in region.concepts]))
+    
+    # Aggregate concepts
+    allConcepts = {}
+    for region in regions:
+        for concept in region.concepts:
+            if concept.id in allConcepts:
+                allConcepts[concept.id].confidence += concept.confidence
+            else:
+                allConcepts[concept.id] = concept
+    for concept in allConcepts.values():
+        concept.confidence /= len(regions)
+    
+    # TODO: Secondary filtering
+
+    st.write("## All Concepts")
+    st.write(pd.DataFrame.from_records([{
+        'name': concept.name,
+        'id': concept.id,
+        'confidence': f'{concept.confidence * 100:.2f}%'
+    } for concept in allConcepts.values()]))
 
     brands = getRegionsWithConceptsLogo(results)
-    st.write("## Brands")
-    for region in brands:
-        st.write(f"### {region.id}")
-        
-        st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
+    with st.expander("Brand details"):
+        st.write("## Brands")
+        for region in brands:
+            st.write(f"### {region.id}")
+            
+            st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
 
-        st.write(pd.DataFrame.from_records([{
-            'name': concept.name,
-            'id': concept.id,
-            'confidence': f'{concept.confidence * 100:.2f}%'
-        } for concept in region.concepts]))
+            st.write(pd.DataFrame.from_records([{
+                'name': concept.name,
+                'id': concept.id,
+                'confidence': f'{concept.confidence * 100:.2f}%'
+            } for concept in region.concepts]))
     
+    # print(results)
+    
+    # Aggregate brands
+    allBrands = {}
+    for region in brands:
+        for concept in region.concepts:
+            if concept.id in allBrands:
+                allBrands[concept.id].confidence += concept.confidence
+            else:
+                allBrands[concept.id] = concept
+    
+    # TODO: Secondary filtering
 
-    # st.write("## Output")
-    # st.write(results)
+    st.write("## All Brands")
+    st.write(pd.DataFrame.from_records([{
+        'name': concept.name,
+        'id': concept.id,
+        'confidence': concept.confidence
+    } for concept in allBrands.values()]))
+
+    # Create and run prompt
+    sys, prompt = createPrompt(colors, allConcepts, allBrands)
+    st.write("## Prompt")
+    st.write(prompt)
+
+    # Run prompt
+    response = runPrompt(sys, prompt)
+    st.write("## Response")
+    st.write(response)
