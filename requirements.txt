@@ -1,3 +1,4 @@
 streamlit
 clarifai
 python-dotenv
+Pillow

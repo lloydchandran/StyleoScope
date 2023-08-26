@@ -5,6 +5,7 @@ from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 from dotenv import load_dotenv
+from PIL import Image
 
 from custom_types import ColorResult, Concept, RegionResult
 
@@ -85,9 +86,7 @@ if uploaded_file is not None:
     for region in regions:
         st.write(f"### {region.id}")
         
-        # Draw the image and the bounding box
-        st.image(uploaded_file, caption=f"Region {region.id}", use_column_width=True)
-        st.write(region.rect)
+        st.image(region.drawBoundingBox(Image.open(uploaded_file)), use_column_width=True)
 
         st.write(pd.DataFrame.from_records([{
             'name': concept.name,
