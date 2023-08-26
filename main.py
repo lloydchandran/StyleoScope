@@ -6,7 +6,7 @@ from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 from dotenv import load_dotenv
 
-from colors import ColorResult
+from custom_types import ColorResult, Concept, RegionResult
 
 load_dotenv()
 
@@ -56,9 +56,44 @@ def getColors(results):
                 colorResults.append(ColorResult(color.raw_hex, color.w3c, color.value))
     return colorResults
 
+def getRegionsWithConcepts(results):
+    regionResults = []
+    for output in results.outputs:
+        if output.model.id == "apparel-classification-v2":
+            for regions in output.data.regions:
+                regionResult = RegionResult(regions.id, regions.region_info.bounding_box)
+                for concept in regions.data.concepts:
+                    regionResult.addConcept(Concept(concept.id, concept.name, concept.value))
+                regionResults.append(regionResult)
+    return regionResults
+
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     results = runWorkflow(uploaded_file.read())
     colors = getColors(results)
+
     # Create a table of name and hex values
-    st.write(pd.DataFrame.from_records([{ 'name': color.name, 'hex': color.hex } for color in colors]))
+    st.write("## Colors")
+    st.write(pd.DataFrame.from_records([{
+        'name': color.name,
+        'hex': color.hex,
+        'prevalence': f'{color.prevalence * 100:.2f}%'
+    } for color in colors]))
+
+    regions = getRegionsWithConcepts(results)
+    st.write("## Regions")
+    for region in regions:
+        st.write(f"### {region.id}")
+        
+        # Draw the image and the bounding box
+        st.image(uploaded_file, caption=f"Region {region.id}", use_column_width=True)
+        st.write(region.rect)
+
+        st.write(pd.DataFrame.from_records([{
+            'name': concept.name,
+            'id': concept.id,
+            'confidence': f'{concept.confidence * 100:.2f}%'
+        } for concept in region.concepts]))
+
+    # st.write("## Output")
+    # st.write(results)
