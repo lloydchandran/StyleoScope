@@ -119,7 +119,8 @@ if uploaded_file is not None:
     for concept in allConcepts.values():
         concept.confidence /= len(regions)
     
-    # TODO: Secondary filtering
+    # Remove concepts below 50% confidence
+    allConcepts = {k: v for k, v in allConcepts.items() if v.confidence > 0.5}
 
     st.write("## All Concepts")
     st.write(pd.DataFrame.from_records([{
@@ -165,6 +166,9 @@ if uploaded_file is not None:
     # Create and run prompt
     sys, prompt = createPrompt(colors, allConcepts.values(), allBrands.values())
     st.write("## Prompt")
+    st.write("### System")
+    st.write(sys)
+    st.write("### Input")
     st.write(prompt)
 
     # Run prompt

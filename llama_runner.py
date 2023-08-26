@@ -10,8 +10,8 @@ PAT = '18b597103b19450587f621929c41a137'
 USER_ID = 'meta'
 APP_ID = 'Llama-2'
 # Change these to whatever model and text URL you want to use
-MODEL_ID = 'llama2-13b-chat'
-MODEL_VERSION_ID = '79a1af31aa8249a99602fc05687e8f40'
+MODEL_ID = 'llama2-70b-chat'
+MODEL_VERSION_ID = '6c27e86364ba461d98de95cddc559cb3'
 
 channel = ClarifaiChannel.get_grpc_channel()
 stub = service_pb2_grpc.V2Stub(channel)
@@ -48,21 +48,20 @@ def runPrompt(sys, prompt):
 # Returns a (sys, prompt) tuple with details from the given input
 # Meant to be used with runPrompt
 def createPrompt(colors, concepts, brands):
-    sys = """You are an assistant for a clothing website.
-Write a description for a clothing item I want to sell"""
-    prompt = """Upon inspection, I was able to determine the following details about the item:
-
+    sys = """You are given the details of an article of clothing, which were detected automatically.
+You should come up with a description of the item in natural language, oriented towards potential buyers.
 """
+    prompt = """"""
 
-    colors_str = "No specific colors were detected."
+    colors_str = "No specific colors were detected"
     if len(colors) > 0:
-        colors_str = "The colors of this item are " + ", ".join([color.name for color in colors]) + "."
-    concepts_str = "This is an article of clothing."
+        colors_str = "Colors: " + ", ".join([color.name for color in colors])
+    concepts_str = "Unknown article of clothing"
     if len(concepts) > 0:
-        concepts_str = "This item is described as " + ", ".join([concept.name for concept in concepts]) + "."
-    brands_str = "No brands were detected."
+        concepts_str = "Concepts: " + ", ".join([concept.name for concept in concepts])
+    brands_str = "No brands were detected"
     if len(brands) > 0:
-        brands_str = "Brand markings on this item include " + ", ".join([brand.name for brand in brands]) + "."
+        brands_str = "Brand markings: " + ", ".join([brand.name for brand in brands])
 
     prompt += "\n".join([colors_str, concepts_str, brands_str])
     
