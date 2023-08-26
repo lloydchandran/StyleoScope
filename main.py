@@ -179,3 +179,5 @@ if uploaded_file is not None:
         response = runPrompt(sys, prompt)
         st.success("Done!")
         st.write(response)
+
+    # TODO: Use StableDiffusion to pair chromatically
