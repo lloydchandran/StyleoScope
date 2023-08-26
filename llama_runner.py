@@ -4,14 +4,14 @@ from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 
 # Your PAT (Personal Access Token) can be found in the portal under Authentification
-PAT = '18b597103b19450587f621929c41a137'
+PAT = os.getenv("CLARIFAI_TOKEN")
 # Specify the correct user_id/app_id pairings
 # Since you're making inferences outside your app's scope
-USER_ID = 'meta'
-APP_ID = 'Llama-2'
+USER_ID = 'openai'
+APP_ID = 'chat-completion'
 # Change these to whatever model and text URL you want to use
-MODEL_ID = 'llama2-70b-chat'
-MODEL_VERSION_ID = '6c27e86364ba461d98de95cddc559cb3'
+MODEL_ID = 'GPT-4'
+MODEL_VERSION_ID = 'ad16eda6ac054796bf9f348ab6733c72'
 
 channel = ClarifaiChannel.get_grpc_channel()
 stub = service_pb2_grpc.V2Stub(channel)
@@ -49,13 +49,15 @@ def runPrompt(sys, prompt):
 # Meant to be used with runPrompt
 def createPrompt(colors, concepts, brands):
     sys = """You are given the details of an article of clothing, which were detected automatically.
-You should come up with a description of the item in natural language, oriented towards potential buyers.
+You should come up with a short description of the item, oriented towards potential buyers.
+Make sure to use the natural language names of the detected colors, concepts, and brands, not the actual detected names.
+Provide a "This goes well with" section at the end, with some chromatically paired suggestions.
 """
     prompt = """"""
 
     colors_str = "No specific colors were detected"
     if len(colors) > 0:
-        colors_str = "Colors: " + ", ".join([color.name for color in colors])
+        colors_str = "Colors: " + ", ".join([color.hex for color in colors])
     concepts_str = "Unknown article of clothing"
     if len(concepts) > 0:
         concepts_str = "Concepts: " + ", ".join([concept.name for concept in concepts])

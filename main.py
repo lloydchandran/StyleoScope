@@ -171,7 +171,11 @@ if uploaded_file is not None:
     st.write("### Input")
     st.write(prompt)
 
+    # TODO: Display concepts as hashtags
+
     # Run prompt
-    response = runPrompt(sys, prompt)
     st.write("## Response")
-    st.write(response)
+    with st.spinner("Generating..."):
+        response = runPrompt(sys, prompt)
+        st.success("Done!")
+        st.write(response)
