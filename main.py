@@ -12,6 +12,7 @@ load_dotenv()
 
 from custom_types import ColorResult, Concept, RegionResult
 from llama_runner import createPrompt, runPrompt
+from stable_diffusion import createImage
 
 USER_ID = 'pizzahunter2000'
 PAT = os.getenv("CLARIFAI_TOKEN")
@@ -182,6 +183,7 @@ if __name__ == "__main__":
             st.write(prompt)
 
         # Run prompt
+        img_prompt = ''
         with st.spinner("Generating..."):
             response = runPrompt(sys, prompt)
             with st.expander("Raw response"):
@@ -201,8 +203,12 @@ if __name__ == "__main__":
             match = re.search(rec_pattern, response, re.DOTALL | re.MULTILINE)
             st.write("### Product Recommendation")
             if match:
-                st.write(match.group(1))
+                img_prompt = match.group(1)
+                st.write(img_prompt)
             else:
                 st.error("No recommendation found")
 
-        # TODO: Use StableDiffusion to pair chromatically
+        # Use stable-diffusion to pair chromatically
+        # with st.spinner("Visualizing..."):
+        #     img = createImage(match.group(1))
+        #     st.write(img)
