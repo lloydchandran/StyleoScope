@@ -1,4 +1,5 @@
 import os
+import re
 import streamlit as st
 import pandas as pd
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
@@ -122,6 +123,8 @@ if uploaded_file is not None:
     # Remove concepts below 50% confidence
     allConcepts = {k: v for k, v in allConcepts.items() if v.confidence > 0.5}
 
+    # TODO: Display concepts as hashtags
+
     st.write("## All Concepts")
     st.write(pd.DataFrame.from_records([{
         'name': concept.name,
@@ -143,8 +146,6 @@ if uploaded_file is not None:
                 'confidence': f'{concept.confidence * 100:.2f}%'
             } for concept in region.concepts]))
     
-    # print(results)
-    
     # Aggregate brands
     allBrands = {}
     for region in brands:
@@ -163,21 +164,38 @@ if uploaded_file is not None:
         'confidence': concept.confidence
     } for concept in allBrands.values()]))
 
+    st.write("## Synthesis")
+
     # Create and run prompt
     sys, prompt = createPrompt(colors, allConcepts.values(), allBrands.values())
-    st.write("## Prompt")
-    st.write("### System")
-    st.write(sys)
-    st.write("### Input")
-    st.write(prompt)
-
-    # TODO: Display concepts as hashtags
+    with st.expander("Prompt"):
+        st.write("### System")
+        st.write(sys)
+        st.write("### Instructions")
+        st.write(prompt)
 
     # Run prompt
-    st.write("## Response")
     with st.spinner("Generating..."):
         response = runPrompt(sys, prompt)
-        st.success("Done!")
-        st.write(response)
+        with st.expander("Raw response"):
+            st.write(response)
+        
+        # Use a regex to extract the first paragraph starting with ^
+        response += "\n\n"
+        desc_pattern = r'\^\s?(.*?)(?=\n\n)'
+        match = re.search(desc_pattern, response, re.DOTALL | re.MULTILINE)
+        st.write("### Product Description")
+        if match:
+            st.write(match.group(1))
+        else:
+            st.error("No description found")
+        
+        rec_pattern = r'~\s?(.*?)(?=\n\n)'
+        match = re.search(rec_pattern, response, re.DOTALL | re.MULTILINE)
+        st.write("### Product Recommendation")
+        if match:
+            st.write(match.group(1))
+        else:
+            st.error("No recommendation found")
 
     # TODO: Use StableDiffusion to pair chromatically

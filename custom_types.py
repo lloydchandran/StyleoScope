@@ -1,9 +1,12 @@
 from PIL import Image, ImageDraw
+import re
 
 class ColorResult:
     def __init__(self, hex, w3c, value):
         self.hex = hex
-        self.name = w3c.name
+        # Transform the name to be more readable
+        # WhiteSmoke -> white smoke (split on capital letters)
+        self.name = ' '.join(re.findall('[A-Z][a-z]*', w3c.name)).lower()
         self.w3c_hex = w3c.hex
         self.prevalence = value
     
