@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
         # Create a table of name and hex values
         st.write("## Colors")
-        col1, col2 = st.columns([5, 6])
+        col1, col2 = st.columns([5, 7])
         with col1:
             st.image(Image.open(uploaded_file), use_column_width=True)
         with col2:
