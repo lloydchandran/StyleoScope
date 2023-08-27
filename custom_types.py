@@ -1,5 +1,15 @@
 from PIL import Image, ImageDraw
 import re
+import base64
+
+def createSolidSvg(color):
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <rect width="100%" height="100%" fill="{color}" />
+</svg>"""
+
+def toDataUri(plainSvg):
+    b64 = base64.b64encode(plainSvg.encode('utf-8')).decode('utf-8')
+    return f"data:image/svg+xml;base64,{b64}"
 
 class ColorResult:
     def __init__(self, hex, w3c, value):
@@ -7,6 +17,7 @@ class ColorResult:
         # Transform the name to be more readable
         # WhiteSmoke -> white smoke (split on capital letters)
         self.name = ' '.join(re.findall('[A-Z][a-z]*', w3c.name)).lower()
+        self.svg = toDataUri(createSolidSvg(w3c.hex))
         self.w3c_hex = w3c.hex
         self.prevalence = value
     
