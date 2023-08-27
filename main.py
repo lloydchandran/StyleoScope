@@ -1,5 +1,6 @@
 import os
 import re
+import base64
 import streamlit as st
 import pandas as pd
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
@@ -7,6 +8,8 @@ from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 from dotenv import load_dotenv
 from PIL import Image
+from io import BytesIO
+
 
 load_dotenv()
 
@@ -141,6 +144,7 @@ if __name__ == "__main__":
         } for concept in allConcepts.values()]))
 
         # TODO: Display concepts as hashtags
+        # TODO: Editable description
 
         st.write("## All Brands")
         brands = getRegionsWithConceptsLogo(results)
@@ -209,6 +213,10 @@ if __name__ == "__main__":
                 st.error("No recommendation found")
 
         # Use stable-diffusion to pair chromatically
-        # with st.spinner("Visualizing..."):
-        #     img = createImage(match.group(1))
-        #     st.write(img)
+        with st.spinner("Visualizing..."):
+            img = createImage(match.group(1))
+            try:
+                st.image(img.data.image.base64, output_format='auto', use_column_width=True)
+
+            except Exception as e:
+                print("Error:", e)
