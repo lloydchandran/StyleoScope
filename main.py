@@ -84,23 +84,27 @@ if __name__ == "__main__":
 
         # Create a table of name and hex values
         st.write("## Colors")
-        st.data_editor(
-            pd.DataFrame.from_records([{
-                'color': color.svg,
-                'name': color.name,
-                'hex': color.hex,
-                'prevalence': color.prevalence
-            } for color in colors]),
-            column_config={
-                "color": st.column_config.ImageColumn(),
-                "prevalence": st.column_config.ProgressColumn(
-                    format="%.2f%%",
-                    min_value=0,
-                    max_value=1,
-                ),
-            },
-            hide_index=True,
-        )
+        col1, col2 = st.columns([5, 6])
+        with col1:
+            st.image(Image.open(uploaded_file), use_column_width=True)
+        with col2:
+            st.data_editor(
+                pd.DataFrame.from_records([{
+                    'color': color.svg,
+                    'name': color.name,
+                    'hex': color.hex,
+                    'prevalence': color.prevalence
+                } for color in colors]),
+                column_config={
+                    "color": st.column_config.ImageColumn(),
+                    "prevalence": st.column_config.ProgressColumn(
+                        format="%.2f%%",
+                        min_value=0,
+                        max_value=1,
+                    ),
+                },
+                hide_index=True,
+            )
 
         st.write("## All Concepts")
         regions = getRegionsWithConcepts(results)
@@ -174,7 +178,7 @@ if __name__ == "__main__":
         with st.expander("Prompt"):
             st.write("### System")
             st.write(sys)
-            st.write("### Instructions")
+            st.write("### Input Data")
             st.write(prompt)
 
         # Run prompt
