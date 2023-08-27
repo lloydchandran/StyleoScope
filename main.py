@@ -7,15 +7,15 @@ from clarifai_grpc.grpc.api.status import status_code_pb2
 from dotenv import load_dotenv
 from PIL import Image
 
+load_dotenv()
+
 from custom_types import ColorResult, Concept, RegionResult
 from llama_runner import createPrompt, runPrompt
-
-load_dotenv()
 
 USER_ID = 'pizzahunter2000'
 # Your PAT (Personal Access Token) can be found in the portal under Authentification
 PAT = os.getenv("CLARIFAI_TOKEN")
-APP_ID = 'ReFashion001'
+APP_ID = 'StyloScope'
 # Change these to make your own predictions
 WORKFLOW_ID = 'workflow-c4a9f1'
 IMAGE_URL = 'https://samples.clarifai.com/metro-north.jpg'
